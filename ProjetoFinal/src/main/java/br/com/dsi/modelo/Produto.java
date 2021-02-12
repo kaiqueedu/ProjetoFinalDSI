@@ -2,20 +2,30 @@ package br.com.dsi.modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Produto {
 
 	@Id
-	@GeneratedValue
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String descricao;
 	private String marca;
 	private Double preco;
 
+	public Produto(String descricao, String marca, Double preco) {
+		super();
+		this.descricao = descricao;
+		this.marca = marca;
+		this.preco = preco;
+	}
+	
+	public Produto() {};
+
 	// Getter&Setter
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -43,4 +53,9 @@ public class Produto {
 		this.preco = preco;
 	}
 
+	@Override
+	public String toString() {
+		return "Produto [id: " + id + ", descricao: " + descricao + ", marca: " + marca + ", preço: " + preco + "]";
+	}
+	
 }

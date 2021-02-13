@@ -1,9 +1,12 @@
+package br.com.dsi.principal;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import br.com.dsi.controller.ProdutoController;
 import br.com.dsi.modelo.Produto;
+import br.com.dsi.telas.JanelaPrincipal;
 
 public class Main {
 	
@@ -11,7 +14,15 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+            	new JanelaPrincipal();
+            }
+        });		
+		
+	}	
+		
+	public static void teste() {
 		Produto p = new Produto("Nintendo Switch", "Nintend", 2500.0);
 		Produto p1 = new Produto("PS4", "Sony", 2300.0);
 		
@@ -23,8 +34,14 @@ public class Main {
 		//atualizaProduto(pu);	
 		
 		//Merge: serve para refazer o estado do produto para manager no jpa
-		mergeProduto();
-		
+		//mergeProduto();
+
+		ProdutoController pc = new ProdutoController();
+		//pc.inserirProduto(p);
+		p.setMarca("Nintendo");
+		p.setPreco(1700.0);
+		pc.atualizarProtudo(p.getId(), p);
+
 		System.out.println();
 	
 		emf.close();
@@ -58,4 +75,11 @@ public class Main {
 		
 	}
 
+	
 }
+
+
+
+
+
+

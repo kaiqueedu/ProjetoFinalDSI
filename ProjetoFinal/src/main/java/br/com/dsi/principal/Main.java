@@ -10,16 +10,14 @@ import br.com.dsi.telas.JanelaPrincipal;
 
 public class Main {
 	
-	static EntityManagerFactory emf = Persistence.createEntityManagerFactory("produtos");
+	//static EntityManagerFactory emf = Persistence.createEntityManagerFactory("produtos");
 	
 	public static void main(String[] args) {
-		
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
             	new JanelaPrincipal();
             }
-        });		
-		
+        });			
 	}	
 		
 	public static void teste() {

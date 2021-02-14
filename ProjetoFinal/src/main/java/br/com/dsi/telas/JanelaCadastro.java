@@ -1,5 +1,8 @@
 package br.com.dsi.telas;
 
+import br.com.dsi.controller.ProdutoController;
+import br.com.dsi.modelo.Produto;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -31,8 +34,11 @@ public class JanelaCadastro extends JInternalFrame {
 
 	private JButton btnCadastrar;
 
+	private ProdutoController pController;
+
 	public JanelaCadastro() {
 		super("Janale Cadastro", true, true, true, true);
+		pController = new ProdutoController();
 		criarComponentes();
 		configurarJanela();
 	}
@@ -97,35 +103,22 @@ public class JanelaCadastro extends JInternalFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
-	private void keyTypedPreco(KeyEvent k) {
-		
-	}
-	
 	private void salvarListener(ActionEvent e) {
 
-//		if(fieldNome.getText().isBlank() || fieldIdade.getText().isBlank()) {
-//			JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
-//			return;
-//		}
-//		EditarPessoaController ec = new EditarPessoaController(this);
-//		ec.editarPessoa();
-//		JOptionPane.showMessageDialog(this, "Registro alterado");
-//		resetaCampos();
-
+		if(fieldNome.getText().isBlank() || fieldMarca.getText().isBlank() || fieldPreco.getText().isBlank()){
+			JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
+			return;
+		}
+		Produto produto = new Produto(fieldNome.getText(), fieldMarca.getText(), Double.parseDouble(fieldPreco.getText()));
+		pController.inserirProduto(produto);
+		JOptionPane.showMessageDialog(this, "Registro alterado");
+		resetaCampos();
 	}
 
 	private void resetaCampos() {
 		fieldNome.setText("");
 		fieldMarca.setText("");
-		//fieldPreco.setText("");
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public JPanel getPanel() {
-		return panel;
+		fieldPreco.setText("");
 	}
 	
 }

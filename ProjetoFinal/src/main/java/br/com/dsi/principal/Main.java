@@ -4,11 +4,14 @@ import br.com.dsi.controller.ProdutoController;
 import br.com.dsi.modelo.Produto;
 import br.com.dsi.telas.JanelaPrincipal;
 
+import javax.persistence.Persistence;
+
 public class Main {
 	
 	//static EntityManagerFactory emf = Persistence.createEntityManagerFactory("produtos");
 	
 	public static void main(String[] args) {
+		Persistence.createEntityManagerFactory("banco");
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
             	new JanelaPrincipal();
@@ -34,7 +37,7 @@ public class Main {
 		//pc.inserirProduto(p);
 		p.setMarca("Nintendo");
 		p.setPreco(1700.0);
-		pc.atualizarProtudo(p.getId(), p);
+		//pc.atualizarProtudo(p.getId(), p);
 
 		System.out.println();
 	

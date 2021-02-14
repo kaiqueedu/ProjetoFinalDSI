@@ -15,8 +15,8 @@ public class JanelaConsulta extends JInternalFrame {
 	private JLabel labelIdBusca;
 	private JTextField fIdBusca;	
 	
-	private JLabel labelNome;
-	private JTextField fieldNome;
+	private JLabel labelDescricao;
+	private JTextField fieldDescricao;
 	
 	private JLabel labelMarca;
 	private JTextField fieldMarca;
@@ -31,16 +31,18 @@ public class JanelaConsulta extends JInternalFrame {
 	
 	private Long idJanela;
 	private ProdutoController pController;
+	private Produto produto;
 	
 	public JanelaConsulta() {
-		super("Janela Consulta/Alteração",true,true,true,true);
+		super("Janela Consulta/Alteraï¿½ï¿½o",true,true,true,true);
+		pController = new ProdutoController();
 		criarComponentes();
         configurarJanela();
 	}
 	
 	private void criarComponentes() {
 		panel = new JPanel();		
-		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Consulta/Alteração"));
+		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Consulta/Alteraï¿½ï¿½o"));
 		panel.setLayout(null);		
 		
 		labelIdBusca = new JLabel("Id:");
@@ -49,11 +51,11 @@ public class JanelaConsulta extends JInternalFrame {
 		fIdBusca = new JTextField();
 		fIdBusca.setBounds(50, 30, 40, 20);	
 		
-		labelNome = new JLabel("Produto:");
-		labelNome.setBounds(20, 70, 50, 20);		
+		labelDescricao = new JLabel("Produto:");
+		labelDescricao.setBounds(20, 70, 50, 20);		
 		
-		fieldNome = new JTextField(18);
-		fieldNome.setBounds(80, 70, 240, 20);		
+		fieldDescricao = new JTextField(18);
+		fieldDescricao.setBounds(80, 70, 240, 20);		
 		
 		labelMarca = new JLabel("Marca:");
 		labelMarca.setBounds(20, 100, 50, 20);
@@ -61,7 +63,7 @@ public class JanelaConsulta extends JInternalFrame {
 		fieldMarca = new JTextField(2);	
 		fieldMarca.setBounds(80, 100, 240, 20);
 		
-		labelPreco = new JLabel("Preço:");
+		labelPreco = new JLabel("Preï¿½o:");
 		labelPreco.setBounds(20, 130, 50, 20);
 		
 		fieldPreco = new JTextField(2);	
@@ -83,7 +85,7 @@ public class JanelaConsulta extends JInternalFrame {
 		btnSalvar.setBounds(200, 130, 89, 23);
 		btnSalvar.addActionListener(this::salvarListener);
 		
-		fieldNome.setEditable(false);
+		fieldDescricao.setEditable(false);
 		fieldMarca.setEditable(false);
 		fieldPreco.setEditable(false);
 		
@@ -93,8 +95,8 @@ public class JanelaConsulta extends JInternalFrame {
 		
 		panel.add(labelIdBusca);
 		panel.add(fIdBusca);	
-		panel.add(labelNome);
-		panel.add(fieldNome);
+		panel.add(labelDescricao);
+		panel.add(fieldDescricao);
 		panel.add(labelMarca);
 		panel.add(fieldMarca);
 		panel.add(labelPreco);
@@ -117,13 +119,13 @@ public class JanelaConsulta extends JInternalFrame {
 	public void buscarListener(ActionEvent e) {
 		
 		if(fIdBusca.getText().isBlank()) {
-			JOptionPane.showMessageDialog(this, "Preencha os campos para a pesquisa");
+			JOptionPane.showMessageDialog(this, "Informe o id para a consulta");
 			return;
 		}
 
-		Produto produto = pController.buscarId(Long.parseLong(fIdBusca.getText()));
+		produto = pController.buscarId(Long.parseLong(fIdBusca.getText()));
 		if(produto == null){
-			JOptionPane.showMessageDialog(this, "Id inválido");
+			JOptionPane.showMessageDialog(this, "Id invï¿½lido");
 			return;
 		}
 		setId(produto.getId());
@@ -131,37 +133,39 @@ public class JanelaConsulta extends JInternalFrame {
 	}	
 	
 	private void editarListener(ActionEvent e) {		
-		fieldNome.setEditable(true);
+		fieldDescricao.setEditable(true);
 		fieldMarca.setEditable(true);
 		fieldPreco.setEditable(true);
 	}
 	
 	private void salvarListener(ActionEvent e) {
 		
-		if(fieldNome.getText().isBlank() || fieldMarca.getText().isBlank() || fieldPreco.getText().isBlank()) {
+		if(fieldDescricao.getText().isBlank() || fieldMarca.getText().isBlank() || fieldPreco.getText().isBlank()) {
 			JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
 			return;
 		}
-		pController.atualizarProtudo();
-//		EditarPessoaController ec = new EditarPessoaController(this);
-//		ec.editarPessoa();
-//		JOptionPane.showMessageDialog(this, "Registro alterado");
-//		resetaCampos();
-		
+		produto.setDescricao(fieldDescricao.getText());
+		produto.setMarca(fieldMarca.getText());
+		produto.setPreco(Double.parseDouble(fieldPreco.getText()));
+
+		pController.atualizarProtudo(produto);
+
+		JOptionPane.showMessageDialog(this, "Registro alterado");
+		resetaCampos();
 	}
 	
 	private void excluirListener(ActionEvent e) {
-//		ExcluirPessoaController ec = new ExcluirPessoaController(this);
-//		if(id != null) {
-//			ec.excluirPessoa(id);
-//		}
-//		JOptionPane.showMessageDialog(this, "Registro excluído");
-//		
-//		resetaCampos();		
+
+		if(getId() != null){
+			pController.removerProduto(produto);
+		}
+
+		JOptionPane.showMessageDialog(this, "Registro removido");
+		resetaCampos();
 	}
 	
 	private void carregaTela(Produto p) {
-		fieldNome.setText(p.getDescricao());
+		fieldDescricao.setText(p.getDescricao());
 		fieldMarca.setText(p.getMarca());
 		fieldPreco.setText(""+p.getPreco());
 		btnEditar.setEnabled(true);
@@ -170,11 +174,13 @@ public class JanelaConsulta extends JInternalFrame {
 	}
 	
 	private void resetaCampos() {
-		fieldNome.setText("");
+		fieldDescricao.setText("");
 		fieldMarca.setText("");
+		fieldPreco.setText("");
 		
-		fieldNome.setEditable(false);
+		fieldDescricao.setEditable(false);
 		fieldMarca.setEditable(false);
+		fieldPreco.setEditable(false);
 		btnEditar.setEnabled(false);
 		btnExcluir.setEnabled(false);	
 		btnSalvar.setEnabled(false);	
@@ -204,20 +210,20 @@ public class JanelaConsulta extends JInternalFrame {
 		this.fIdBusca = fIdBusca;
 	}
 
-	public JLabel getLabelNome() {
-		return labelNome;
+	public JLabel getlabelDescricao() {
+		return labelDescricao;
 	}
 
-	public void setLabelNome(JLabel labelNome) {
-		this.labelNome = labelNome;
+	public void setlabelDescricao(JLabel labelDescricao) {
+		this.labelDescricao = labelDescricao;
 	}
 
-	public JTextField getFieldNome() {
-		return fieldNome;
+	public JTextField getfieldDescricao() {
+		return fieldDescricao;
 	}
 
-	public void setFieldNome(JTextField fieldNome) {
-		this.fieldNome = fieldNome;
+	public void setfieldDescricao(JTextField fieldDescricao) {
+		this.fieldDescricao = fieldDescricao;
 	}
 
 	public JLabel getLabelMarca() {

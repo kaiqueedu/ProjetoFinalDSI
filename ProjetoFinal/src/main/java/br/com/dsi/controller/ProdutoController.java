@@ -25,12 +25,18 @@ public class ProdutoController {
 		pservice.fecharConexao();
 	}
 
-	public void atualizarProtudo(Long id, Produto prodAlterado){
-		if(id == null || prodAlterado == null) {
+	public void atualizarProtudo(Produto prodAlterado){
+		if(prodAlterado == null) {
 			return;
 		}
-		pservice.update(id, prodAlterado);
-		pservice.fecharConexao();
+		pservice.update(prodAlterado);
+	}
+
+	public void removerProduto(Produto produto){
+		if(produto == null){
+			return;
+		}
+		pservice.remove(produto);
 	}
 
 	public Produto buscarId(Long id){

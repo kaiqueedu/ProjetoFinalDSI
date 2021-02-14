@@ -40,7 +40,7 @@ public class JanelaPrincipal extends JFrame{
         itemCadastro.addActionListener(this::abrirJanelaCadastro);
         
         itemConsulta = new JMenuItem("Consultar Produtos");
-        //itemConsulta.addActionListener(this::abrirJanelaConsulta);
+        itemConsulta.addActionListener(this::abrirJanelaConsulta);
         
         itemListar = new JMenuItem("Listar Estoque");
         //itemListar.addActionListener(this::abrirJanelaListarPessoas);
@@ -67,8 +67,8 @@ public class JanelaPrincipal extends JFrame{
     }
     
     private void abrirJanelaConsulta(ActionEvent e) {
-    	//JanelaConsulta form = new JanelaConsulta();
-    	//carregarJanela(form);
+    	JanelaConsulta form = new JanelaConsulta();
+    	carregarJanela(form);
     }
     
     private void configurarJanela() {

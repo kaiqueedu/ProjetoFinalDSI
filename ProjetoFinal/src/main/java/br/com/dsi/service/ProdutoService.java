@@ -12,7 +12,7 @@ public class ProdutoService {
 	EntityManagerFactory emf; 
 	
 	public ProdutoService() {
-		emf = Persistence.createEntityManagerFactory("produtos");
+		emf = Persistence.createEntityManagerFactory("banco");
 	}	
 	
 	public boolean insert(Produto prod) {
@@ -22,6 +22,7 @@ public class ProdutoService {
 			em.getTransaction().begin();
 			em.persist(prod);
 			em.getTransaction().commit();
+			em.close();
 		}catch (IllegalStateException  | RollbackException e ) {
 			e.printStackTrace();
 			return false;
@@ -29,18 +30,28 @@ public class ProdutoService {
 		return true;
 	}
 
-	public void update(Long id, Produto prodAlterado) {
+	public void update(Produto prodAlterado) {
 		EntityManager em = emf.createEntityManager();
-
 		try {
+			Produto managed = find(prodAlterado.getId());
+
 			em.getTransaction().begin();
-			Produto managed = find(id);
 			managed = prodAlterado;
+			em.merge(managed);
 			em.getTransaction().commit();
+			em.close();
 		}catch (IllegalStateException  | RollbackException e ) {
 			e.printStackTrace();
-
 		}
+	}
+
+	public void remove(Produto produto){
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		produto = em.find(produto.getClass(), produto.getId());
+		em.remove(produto);
+		em.getTransaction().commit();
+		em.close();
 	}
 
 	public Produto find(Long id){

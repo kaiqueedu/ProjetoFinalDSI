@@ -7,6 +7,8 @@ import javax.persistence.Persistence;
 import br.com.dsi.modelo.Produto;
 import br.com.dsi.service.ProdutoService;
 
+import java.util.List;
+
 public class ProdutoController {
 	
 	//private JanelaConsulta tela;
@@ -30,6 +32,10 @@ public class ProdutoController {
 			return;
 		}
 		pservice.update(prodAlterado);
+	}
+
+	public List<Produto> buscaTodos(){
+		return pservice.findAll();
 	}
 
 	public void removerProduto(Produto produto){

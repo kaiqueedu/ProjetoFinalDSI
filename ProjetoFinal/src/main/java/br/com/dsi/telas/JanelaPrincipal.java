@@ -43,7 +43,7 @@ public class JanelaPrincipal extends JFrame{
         itemConsulta.addActionListener(this::abrirJanelaConsulta);
         
         itemListar = new JMenuItem("Listar Estoque");
-        //itemListar.addActionListener(this::abrirJanelaListarPessoas);
+        itemListar.addActionListener(this::abrirJanelaListaProdutos);
         
         itemSair = new JMenuItem("Sair");
         itemSair.addActionListener(this::sair);
@@ -60,7 +60,7 @@ public class JanelaPrincipal extends JFrame{
         
         add(desktop);
     }
-    
+
     private void abrirJanelaCadastro(ActionEvent e) {
     	JanelaCadastro form = new JanelaCadastro();
     	carregarJanela(form);
@@ -70,7 +70,12 @@ public class JanelaPrincipal extends JFrame{
     	JanelaConsulta form = new JanelaConsulta();
     	carregarJanela(form);
     }
-    
+
+    private void abrirJanelaListaProdutos(ActionEvent actionEvent) {
+        JanelaListaProdutos form = new JanelaListaProdutos();
+        carregarJanela(form);
+    }
+
     private void configurarJanela() {
         setVisible(true);
         setSize(1200,800);

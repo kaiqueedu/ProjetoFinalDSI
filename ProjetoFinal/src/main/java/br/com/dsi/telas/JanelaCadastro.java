@@ -54,16 +54,16 @@ public class JanelaCadastro extends JInternalFrame {
 		labelNome.setBounds(20, 30, 42, 20);
 
 		fieldNome = new JTextField();
-		fieldNome.setBounds(65, 30, 220, 20);
+		fieldNome.setBounds(78, 30, 220, 20);
 
 		labelMarca = new JLabel("Marca");
-		labelMarca.setBounds(20, 60, 42, 20);
+		labelMarca.setBounds(20, 60, 50, 20);
 
 		fieldMarca = new JTextField(18);
-		fieldMarca.setBounds(65, 60, 220, 20);		
+		fieldMarca.setBounds(78, 60, 220, 20);
 	
 		fieldPreco = new JTextField(8);
-		fieldPreco.setBounds(65, 90, 55, 20);
+		fieldPreco.setBounds(78, 90, 55, 20);
 		
 		fieldPreco.addKeyListener(new KeyAdapter() {
 			@Override
@@ -82,7 +82,7 @@ public class JanelaCadastro extends JInternalFrame {
 		labelPreco.setLabelFor(fieldPreco);				
 		
 		btnCadastrar = new JButton("CADASTRAR");
-		btnCadastrar.setBounds(150, 90, 110, 30);
+		btnCadastrar.setBounds(150, 90, 120, 30);
 		btnCadastrar.addActionListener(this::salvarListener);
 
 		panel.add(labelNome);
@@ -111,7 +111,7 @@ public class JanelaCadastro extends JInternalFrame {
 		}
 		Produto produto = new Produto(fieldNome.getText(), fieldMarca.getText(), Double.parseDouble(fieldPreco.getText()));
 		pController.inserirProduto(produto);
-		JOptionPane.showMessageDialog(this, "Registro alterado");
+		JOptionPane.showMessageDialog(this, "Produto cadastrado");
 		resetaCampos();
 	}
 

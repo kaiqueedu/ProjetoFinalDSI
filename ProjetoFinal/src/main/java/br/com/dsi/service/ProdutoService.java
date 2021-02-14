@@ -7,6 +7,8 @@ import javax.persistence.RollbackException;
 
 import br.com.dsi.modelo.Produto;
 
+import java.util.List;
+
 public class ProdutoService {
 
 	EntityManagerFactory emf; 
@@ -57,6 +59,11 @@ public class ProdutoService {
 	public Produto find(Long id){
 		EntityManager em = emf.createEntityManager();
 		return em.find(Produto.class, id);
+	}
+
+	public List<Produto> findAll(){
+		EntityManager em = emf.createEntityManager();
+		return em.createQuery("FROM " + Produto.class.getName()).getResultList();
 	}
 
 	public void fecharConexao(){

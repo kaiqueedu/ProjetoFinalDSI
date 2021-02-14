@@ -34,7 +34,7 @@ public class JanelaConsulta extends JInternalFrame {
 	private Produto produto;
 	
 	public JanelaConsulta() {
-		super("Janela Consulta/Altera��o",true,true,true,true);
+		super("Janela Consulta/Alteração",true,true,true,true);
 		pController = new ProdutoController();
 		criarComponentes();
         configurarJanela();
@@ -42,7 +42,7 @@ public class JanelaConsulta extends JInternalFrame {
 	
 	private void criarComponentes() {
 		panel = new JPanel();		
-		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Consulta/Altera��o"));
+		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Consulta/Alteração"));
 		panel.setLayout(null);		
 		
 		labelIdBusca = new JLabel("Id:");
@@ -52,7 +52,7 @@ public class JanelaConsulta extends JInternalFrame {
 		fIdBusca.setBounds(50, 30, 40, 20);	
 		
 		labelDescricao = new JLabel("Produto:");
-		labelDescricao.setBounds(20, 70, 50, 20);		
+		labelDescricao.setBounds(20, 70, 70, 20);
 		
 		fieldDescricao = new JTextField(18);
 		fieldDescricao.setBounds(80, 70, 240, 20);		
@@ -63,7 +63,7 @@ public class JanelaConsulta extends JInternalFrame {
 		fieldMarca = new JTextField(2);	
 		fieldMarca.setBounds(80, 100, 240, 20);
 		
-		labelPreco = new JLabel("Pre�o:");
+		labelPreco = new JLabel("Preço:");
 		labelPreco.setBounds(20, 130, 50, 20);
 		
 		fieldPreco = new JTextField(2);	
@@ -184,110 +184,6 @@ public class JanelaConsulta extends JInternalFrame {
 		btnEditar.setEnabled(false);
 		btnExcluir.setEnabled(false);	
 		btnSalvar.setEnabled(false);	
-	}
-
-	public JPanel getPanel() {
-		return panel;
-	}
-
-	public void setPanel(JPanel panel) {
-		this.panel = panel;
-	}
-
-	public JLabel getLabelIdBusca() {
-		return labelIdBusca;
-	}
-
-	public void setLabelIdBusca(JLabel labelIdBusca) {
-		this.labelIdBusca = labelIdBusca;
-	}
-
-	public JTextField getfIdBusca() {
-		return fIdBusca;
-	}
-
-	public void setfIdBusca(JTextField fIdBusca) {
-		this.fIdBusca = fIdBusca;
-	}
-
-	public JLabel getlabelDescricao() {
-		return labelDescricao;
-	}
-
-	public void setlabelDescricao(JLabel labelDescricao) {
-		this.labelDescricao = labelDescricao;
-	}
-
-	public JTextField getfieldDescricao() {
-		return fieldDescricao;
-	}
-
-	public void setfieldDescricao(JTextField fieldDescricao) {
-		this.fieldDescricao = fieldDescricao;
-	}
-
-	public JLabel getLabelMarca() {
-		return labelMarca;
-	}
-
-	public void setLabelMarca(JLabel labelMarca) {
-		this.labelMarca = labelMarca;
-	}
-
-	public JTextField getFieldMarca() {
-		return fieldMarca;
-	}
-
-	public void setFieldMarca(JTextField fieldMarca) {
-		this.fieldMarca = fieldMarca;
-	}
-
-	public JLabel getLabelPreco() {
-		return labelPreco;
-	}
-
-	public void setLabelPreco(JLabel labelPreco) {
-		this.labelPreco = labelPreco;
-	}
-
-	public JTextField getFieldPreco() {
-		return fieldPreco;
-	}
-
-	public void setFieldPreco(JTextField fieldPreco) {
-		this.fieldPreco = fieldPreco;
-	}
-
-	public JButton getBtnBuscar() {
-		return btnBuscar;
-	}
-
-	public void setBtnBuscar(JButton btnBuscar) {
-		this.btnBuscar = btnBuscar;
-	}
-
-	public JButton getBtnEditar() {
-		return btnEditar;
-	}
-
-	public void setBtnEditar(JButton btnEditar) {
-		this.btnEditar = btnEditar;
-	}
-
-	public JButton getBtnExcluir() {
-		return btnExcluir;
-	}
-
-	public void setBtnExcluir(JButton btnExcluir) {
-		this.btnExcluir = btnExcluir;
-	}
-
-	public JButton getBtnSalvar() {
-		return btnSalvar;
-	}
-
-	public void setBtnSalvar(JButton btnSalvar) {
-		this.btnSalvar = btnSalvar;
 	}
 
 	public Long getId() {

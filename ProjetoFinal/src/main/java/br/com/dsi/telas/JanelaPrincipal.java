@@ -66,6 +66,11 @@ public class JanelaPrincipal extends JFrame{
     	carregarJanela(form);
     }
     
+    private void abrirJanelaConsulta(ActionEvent e) {
+    	//JanelaConsulta form = new JanelaConsulta();
+    	//carregarJanela(form);
+    }
+    
     private void configurarJanela() {
         setVisible(true);
         setSize(1200,800);

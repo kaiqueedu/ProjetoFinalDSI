@@ -34,7 +34,7 @@ public class ProdutoService {
 
 		try {
 			em.getTransaction().begin();
-			Produto managed = find(id, em);
+			Produto managed = find(id);
 			managed = prodAlterado;
 			em.getTransaction().commit();
 		}catch (IllegalStateException  | RollbackException e ) {
@@ -43,7 +43,8 @@ public class ProdutoService {
 		}
 	}
 
-	public Produto find(Long id, EntityManager em){
+	public Produto find(Long id){
+		EntityManager em = emf.createEntityManager();
 		return em.find(Produto.class, id);
 	}
 

@@ -32,7 +32,7 @@ public class JanelaCadastro extends JInternalFrame {
 	private JButton btnCadastrar;
 
 	public JanelaCadastro() {
-		super("Cadastro de Produto", true, true, true, true);
+		super("Janale Cadastro", true, true, true, true);
 		criarComponentes();
 		configurarJanela();
 	}

@@ -33,6 +33,12 @@ public class ProdutoController {
 		pservice.fecharConexao();
 	}
 
+	public Produto buscarId(Long id){
+		if(id == null){
+			return null;
+		}
+		return pservice.find(id);
+	}
 
 
 

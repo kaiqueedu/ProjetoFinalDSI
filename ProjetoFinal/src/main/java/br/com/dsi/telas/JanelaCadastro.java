@@ -48,8 +48,6 @@ public class JanelaCadastro extends JInternalFrame {
 		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Inserção de produtos"));
 		panel.setLayout(null);
 
-		// x, y , wi, hei
-
 		labelNome = new JLabel("Nome");
 		labelNome.setBounds(20, 30, 42, 20);
 

@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyVetoException;
 import java.util.List;
 
 public class JanelaListaProdutos extends JInternalFrame {
@@ -19,6 +20,7 @@ public class JanelaListaProdutos extends JInternalFrame {
     private DefaultTableModel defaultModel;
     private JScrollPane scroll;
     private JButton buttonBuscar;
+    private JButton buttonFechar;
 
     private ProdutoController pController;
 
@@ -42,7 +44,6 @@ public class JanelaListaProdutos extends JInternalFrame {
         defaultModel.addColumn("Descrição");
         defaultModel.addColumn("Marca");
         defaultModel.addColumn("Preço");
-        defaultModel.addColumn("Estoque");
 
         scroll = new JScrollPane();
         scroll.setViewportView(table);
@@ -50,11 +51,15 @@ public class JanelaListaProdutos extends JInternalFrame {
         scroll.setPreferredSize(new Dimension(600, 500));
 
         buttonBuscar = new JButton("Atualizar");
-        buttonBuscar.setBounds(29, 190, 68, 23);
         buttonBuscar.addActionListener(this::atualizaLista);
         getContentPane().add(buttonBuscar);
 
+        buttonFechar = new JButton("Fechar");
+        buttonFechar.addActionListener(this::fechar);
+        getContentPane().add(buttonBuscar);
+
         panel.add(buttonBuscar);
+        panel.add(buttonFechar);
 
         panel.add(scroll);
         add(panel);
@@ -62,21 +67,20 @@ public class JanelaListaProdutos extends JInternalFrame {
 
     private void configurarJanela() {
         setVisible(true);
-
         pack();
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }
-
-    public JButton getButtonBuscar() {
-        return buttonBuscar;
-    }
-
-    public void setButtonBuscar(JButton buttonBuscar) {
-        this.buttonBuscar = buttonBuscar;
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     public void atualizaLista(ActionEvent e){
         carregaProdutos();
+    }
+
+    public void fechar(ActionEvent e){
+        try {
+            this.setClosed(true);
+        } catch (PropertyVetoException propertyVetoException) {
+            propertyVetoException.printStackTrace();
+        }
     }
 
     public void carregaProdutos() {

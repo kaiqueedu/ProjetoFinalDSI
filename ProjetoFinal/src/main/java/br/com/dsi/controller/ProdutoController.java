@@ -10,9 +10,7 @@ import br.com.dsi.service.ProdutoService;
 import java.util.List;
 
 public class ProdutoController {
-	
-	//private JanelaConsulta tela;
-	//private Pessoa modelo;	
+
 	ProdutoService pservice;
 	
 	public ProdutoController() {
@@ -24,7 +22,6 @@ public class ProdutoController {
 			return;
 		}
 		pservice.insert(prod);
-		pservice.fecharConexao();
 	}
 
 	public void atualizarProtudo(Produto prodAlterado){
@@ -51,7 +48,5 @@ public class ProdutoController {
 		}
 		return pservice.find(id);
 	}
-
-
 
 }

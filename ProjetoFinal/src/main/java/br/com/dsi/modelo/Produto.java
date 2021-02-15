@@ -8,9 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class Produto {
 
-	// @Enumerated(EnumTyppe.STRING)
-	// @ManyToOne
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

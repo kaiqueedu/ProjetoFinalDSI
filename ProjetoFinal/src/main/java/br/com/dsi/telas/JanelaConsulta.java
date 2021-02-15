@@ -125,7 +125,7 @@ public class JanelaConsulta extends JInternalFrame {
 
 		produto = pController.buscarId(Long.parseLong(fIdBusca.getText()));
 		if(produto == null){
-			JOptionPane.showMessageDialog(this, "Id inv�lido");
+			JOptionPane.showMessageDialog(this, "Id inválido");
 			return;
 		}
 		setId(produto.getId());

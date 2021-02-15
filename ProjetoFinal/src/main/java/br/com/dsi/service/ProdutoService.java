@@ -35,8 +35,7 @@ public class ProdutoService {
 	public void update(Produto prodAlterado) {
 		EntityManager em = emf.createEntityManager();
 		try {
-			Produto managed = find(prodAlterado.getId());
-
+			Produto managed; //= find(prodAlterado.getId());
 			em.getTransaction().begin();
 			managed = prodAlterado;
 			em.merge(managed);

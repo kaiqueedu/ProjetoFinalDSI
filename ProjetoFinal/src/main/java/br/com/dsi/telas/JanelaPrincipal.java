@@ -42,7 +42,7 @@ public class JanelaPrincipal extends JFrame{
         itemConsulta = new JMenuItem("Consultar Produtos");
         itemConsulta.addActionListener(this::abrirJanelaConsulta);
         
-        itemListar = new JMenuItem("Listar Estoque");
+        itemListar = new JMenuItem("Listar Produtos");
         itemListar.addActionListener(this::abrirJanelaListaProdutos);
         
         itemSair = new JMenuItem("Sair");

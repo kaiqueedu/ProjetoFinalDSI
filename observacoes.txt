@@ -1,0 +1,6 @@
+Projeto desenvolvido utilizando JPA/Habernate.
+
+membros:
+Kaique Corrêa - 1710273
+Gabriel Lee -  1710141
+Gabriel Rossim - 1710133
